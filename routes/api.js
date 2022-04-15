@@ -17,7 +17,7 @@ module.exports = function (app) {
       if (text === undefined || locale === undefined) return res.json({ error: 'Required field(s) missing' })
 
       // Empty text
-      if (text.length === 0) return res.json({ error: 'Translation with empty text' })
+      if (text.length === 0) return res.json({ error: 'No text to translate' })
 
       let translation
       let result
