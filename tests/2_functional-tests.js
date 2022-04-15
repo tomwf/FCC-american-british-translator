@@ -6,7 +6,7 @@ const server = require('../server.js');
 chai.use(chaiHttp);
 
 let Translator = require('../components/translator.js');
-const style = (text) => `<span style='color: green'>${text}</span>`
+const highlight = (text) => `<span class="highlight">${text}</span>`
 
 suite('Functional Tests', () => {
   test('Translation with text and locale fields', (done) => {
@@ -23,7 +23,7 @@ suite('Functional Tests', () => {
 
         assert.deepEqual(res.body, {
           text:  'Mangoes are my favorite fruit.',
-          translation: `Mangoes are my ${style('favourite')} fruit.`
+          translation: `Mangoes are my ${highlight('favourite')} fruit.`
         })
         done()
       })
