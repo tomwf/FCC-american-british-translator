@@ -129,6 +129,34 @@ suite('Unit Tests', () => {
       assert.strictEqual(translator.toAmerican(text), `Tea time is usually around 4 or ${highlight('4:30')}.`)
     })
   })
+
+  suite('highlight()', () => {
+    test('Mangoes are my favorite fruit.', () => {
+      const text = 'Mangoes are my favorite fruit.'
+
+      assert.notInclude(translator.toBritish(text), `favorite`)
+      assert.include(translator.toBritish(text), `${highlight('favourite')}`)
+    })
+
+    test('I ate yogurt for breakfast.', () => {
+      const text = 'I ate yogurt for breakfast.'
+
+      assert.notInclude(translator.toBritish(text), `yogurt`)
+      assert.include(translator.toBritish(text), `${highlight('yoghurt')}`)
+    })
+
+    test('We watched the footie match for a while.', () => {
+      const text = 'We watched the footie match for a while.'
+
+      assert.notInclude(translator.toAmerican(text), `footie`)
+      assert.include(translator.toAmerican(text), `${highlight('soccer')}`)
+    })
+
+    test('Paracetamol takes up to an hour to work.', () => {
+      const text = 'Paracetamol takes up to an hour to work.'
+
+      assert.notInclude(translator.toAmerican(text), `Paracetamol`)
+      assert.include(translator.toAmerican(text), `${highlight('Tylenol')}`)
     })
   })
 });
