@@ -90,7 +90,7 @@ suite('Functional Tests', () => {
       .end((err, res) => {
         if (err) console.error(err)
 
-        assert.deepEqual(res.body, { error: 'Translation with empty text' })
+        assert.deepEqual(res.body, { error: 'No text to translate' })
         done()
       })
   })
