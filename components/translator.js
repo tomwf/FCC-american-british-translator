@@ -5,6 +5,10 @@ const britishOnly = require('./british-only.js')
 
 class Translator {
 
+  highlight(text) {
+    return `<span class="highlight">${text}</span>`
+  }
+
   convertTime(text, language) {
     let searchSeparator
     let targetSeparator
@@ -25,7 +29,7 @@ class Translator {
     const pattern = new RegExp(`([012][0-9])${searchSeparator}([0-5][0-9])|([0-9])${searchSeparator}([0-5][0-9])`, 'g')
 
     if (pattern.test(text)) {
-      const newText = `<span style='color: green'>$1$3${targetSeparator}$2$4</span>`
+      const newText = `<span class="highlight">$1$3${targetSeparator}$2$4</span>`
 
       text = text.replace(pattern, newText)
     }
@@ -44,10 +48,10 @@ class Translator {
           const newValue = title[0].toUpperCase() + title.slice(1)
 
           pattern = new RegExp(`${key}`, 'ig')
-          newText = `<span style='color: green'>${newValue}</span>`
+          newText = this.highlight(newValue)
         } else {
           pattern = new RegExp(`(?<!-)\\b${key}\\b`, 'ig')
-          newText = `<span style='color: green'>${dictionary[key]}</span>`
+          newText = this.highlight(dictionary[key])
         }
 
         if (pattern.test(text)) {
@@ -72,7 +76,7 @@ class Translator {
             newValue = title
           }
 
-          const newText = `<span style='color: green'>${newValue}</span>`
+          const newText = this.highlight(newValue)
           text = text.replace(pattern, newText)
         }
       }
